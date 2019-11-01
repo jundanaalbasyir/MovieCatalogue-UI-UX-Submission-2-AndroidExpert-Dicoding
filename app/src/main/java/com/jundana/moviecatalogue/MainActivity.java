@@ -1,8 +1,16 @@
 package com.jundana.moviecatalogue;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.text.Html;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.tabs.TabLayout;
+import com.jundana.moviecatalogue.adapter.SectionsPagerAdapter;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#000000"));
+        tabLayout.setupWithViewPager(viewPager);
+        Objects.requireNonNull(getSupportActionBar()).setElevation(0);
     }
 }
